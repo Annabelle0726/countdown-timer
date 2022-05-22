@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="icon" sizes="64x64"
+          href="https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/64/000000/external-clock-man-accessories-kiranshastry-gradient-kiranshastry.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Timer</title>
+    <script defer src="countdown.js"></script>
+    <link rel="stylesheet" href="clock.css">
+    <link rel="stylesheet" href="../../TutorialPro/Buttons/cHearthstoneBtn.css">
+</head>
+
+<body>
+<main class="font-box">
+    <div class="container">
+        <div class="clock-title border-main">
+            <div class="clock-title-img">
+                <img src="https://img.icons8.com/external-kiranshastry-gradient-kiranshastry/64/000000/external-clock-man-accessories-kiranshastry-gradient-kiranshastry.png"
+                     alt="clock">
+            </div>
+            <h2 class="clock-title-words">Timer</h2>
+        </div>
+        <div class="border-main">
+            <h3 class="labels">Topic Table</h3>
+            <table id="eventTable">
+                <tr>
+                    <th>Topic</th>
+                    <th>Minutes</th>
+                </tr>
+                <tr id="row1">
+                    <td>Greeting</td>
+                    <td>2</td>
+                    <td id="del-1" class="BOTTOM gradient-g btn-small">
+                        <span class="text">Delete</span>
+                        <span class="highlight-span"></span>
+                    </td>
+                </tr>
+                <tr id="row2">
+                    <td>Programming</td>
+                    <td>10</td>
+                    <td id="del-2" class="BOTTOM gradient-g btn-small">
+                        <span class="text">Delete</span>
+                        <span class="highlight-span"></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="border-main">
+            <h3 class="labels">Add time blocks</h3>
+            <div class="alter-container" id="addAlter">
+            </div>
+            <form id="add-event-form" class="form-group" method="post" action="index.html">
+                <div class="form-cell">
+                    <label for="taskName">Task Name</label>
+                    <input type="text" minlength="1" class="form-control" name="taskName" id="taskName" required
+                           placeholder="Input task name">
+                </div>
+                <div class="form-cell">
+                    <label for="minutes">Enter Minutes</label>
+                    <input type="number" minlength="1" class="form-control" name="minutes" id="minutes" required
+                           placeholder="Input minutes">
+                </div>
+                <div id="addBtn" class="BOTTOM gradient-g btn-small">
+                    <span class="text">Add a Time block</span>
+                    <span class="highlight-span"></span>
+                </div>
+            </form>
+        </div>
+        <div class="border-main time-remain">
+            <div class="alter-container" id="timeAlter">
+            </div>
+            <span class="labels">Time remain</span>
+            <div id="timeContainer">
+                <div id="progressBar">
+                    <div id="bar"></div>
+                </div>
+                <div data-time>
+                    <span class="timer" id="hour"></span>
+                    <span class="timer">:</span>
+                    <span class="timer" id="minute"></span>
+                    <span class="timer">:</span>
+                    <span class="timer" id="second"></span>
+                </div>
+            </div>
+            <div id="start" class="BOTTOM gradient-g btn-small">
+                <span class="text">Start Timing</span>
+                <span class="highlight-span"></span>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+</body>
