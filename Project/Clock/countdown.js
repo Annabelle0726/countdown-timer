@@ -7,7 +7,6 @@ const SECOND = document.getElementById("second");
 HOUR.innerText = "Hour";
 MINUTE.innerText = "Minute";
 SECOND.innerText = "Second";
-const progress_bar = document.getElementById("progressBar");
 const bar = document.getElementById("bar");
 const ADD_BTN = document.getElementById("addBtn");
 const FORM = document.getElementById("add-event-form");
@@ -18,7 +17,6 @@ const TIME_SECTION = document.getElementById("timeAlter");
 const DEL_BTN1 = document.getElementById("del-1");
 const DEL_BTN2 = document.getElementById("del-2");
 START_BTN.addEventListener("click", timerCounter);
-const CURRENT_DATE = new Date();
 DEL_BTN1.addEventListener("click", () => {
     const ROW1 = document.getElementById("row1");
     ROW1.remove();
@@ -65,16 +63,16 @@ ADD_BTN.onclick = function (event) {
 }
 
 function getText(time) {
-    const MINUTES = Math.floor(time / 60) % 60;
-    const HOURS = Math.floor(time / 3600 % 24);
-    const SECONDS = Math.floor(time % 60);
-    HOUR.innerText = HOURS;
-    MINUTE.innerText = MINUTES;
-    SECOND.innerText = SECONDS;
+    const show_min = Math.floor(time / 60) % 60;
+    const show_hour = Math.floor(time / 3600 % 24);
+    const show_sec = Math.floor(time % 60);
+    HOUR.innerText = show_hour.toString();
+    MINUTE.innerText = show_min.toString();
+    SECOND.innerText = show_sec.toString();
 }
 
 function showTimeLeft(time, uMinute) {
-    return (time / (uMinute * 60) * 100).toFixed(0);
+    return (time / uMinute * 100).toFixed(0);
 }
 
 function showAlert(msg, section, duration = 1000) {
@@ -99,16 +97,13 @@ function timerCounter() {
         const topEvent = events[0];
         const topEvent2 = events[1];
         const topEvent3 = events[2];
-        const user_minute = topEvent2.innerText
-        if (i == 0) {
+        const user_minute = topEvent2.innerText;
+        const U_Min = parseInt(user_minute) * 60;
+        previous = U_Min;
+        if (i === 0) {
             i = 1;
             let counter = setInterval(frame, 1000);
-
             function frame() {
-                const U_Min = parseInt(user_minute);
-                const COUNT_TO_DATE = new Date().setMinutes(new Date().getMinutes() - U_Min);
-                let gap = Math.ceil((CURRENT_DATE - COUNT_TO_DATE) / 1000);
-                previous = gap
                 if (previous >= 0) {
                     console.log(previous)
                     getText(previous);
@@ -126,10 +121,9 @@ function timerCounter() {
                     topEvent.remove();
                     topEvent2.remove();
                     topEvent3.remove();
-                    START_BTN.removeEventListener('click', timerCounter);
-                    START_BTN.addEventListener("click", timerCounter)
+                    clearInterval(counter);
                 }
-                previous = gap;
+                previous--;
             }
         }
     } else {
